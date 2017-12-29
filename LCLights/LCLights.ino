@@ -1,4 +1,5 @@
 
+#define PIN_LED_GREEN 4
 #define PIN_LED_LEFT  5
 #define PIN_LED_RIGHT 6
 #define PIN_WARNING   7
@@ -20,12 +21,14 @@ void setup()
   Serial.begin(9600);
   Serial.println("\n\n***\nSetting up...");
 #endif
+  pinMode(PIN_LED_GREEN, OUTPUT);
   pinMode(PIN_LED_LEFT, OUTPUT);
   pinMode(PIN_LED_RIGHT, OUTPUT);
   pinMode(PIN_WARNING, OUTPUT);
   pinMode(PIN_TRIGGER, INPUT_PULLUP);
   pinMode(PIN_FINISH, INPUT_PULLUP);
 
+  digitalWrite(PIN_LED_GREEN, HIGH);
   digitalWrite(PIN_LED_LEFT, LOW);
   digitalWrite(PIN_LED_RIGHT, LOW);
   digitalWrite(PIN_WARNING, LOW);
@@ -98,7 +101,10 @@ void loop()
 #ifdef DEBUG
     Serial.println("Running lights...");
 #endif
+    digitalWrite(PIN_LED_GREEN, LOW);
     runLights(10 * 1000, PIN_FINISH);
+    delay(DELAY);
+    digitalWrite(PIN_LED_GREEN, HIGH);
   }
   delay(5);
 
