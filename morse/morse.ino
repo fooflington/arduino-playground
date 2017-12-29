@@ -138,6 +138,11 @@ void writeChar(char c) {
       DO_DASH;
       break;
 
+    case 'R':
+      DO_DOT;
+      DO_DASH;
+      DO_DOT;
+
     case 'S':
       DO_DOT;
       DO_DOT;
