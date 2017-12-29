@@ -1,6 +1,8 @@
 #define PIN_OUT 5
 #define PIN_ERR 7
-#define BASE_TIME 100
+#define PIN_READY 4
+
+#define BASE_TIME 75
 
 #define DOT        1
 #define DASH       3
@@ -204,6 +206,9 @@ void setup() {
   digitalWrite(PIN_OUT, LOW);
   pinMode(PIN_ERR, OUTPUT);
   digitalWrite(PIN_ERR, LOW);
+  pinMode(PIN_READY, OUTPUT);
+
+  Serial.begin(9600);
 }
 
 void loop() {
