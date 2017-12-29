@@ -24,7 +24,7 @@ void pulse(byte t) {
 
 void pulseError() {
   digitalWrite(PIN_ERR, HIGH);
-  delay(GAP * BASE_TIME);
+  delay(DASH * BASE_TIME);
   digitalWrite(PIN_ERR, LOW);
 }
 
