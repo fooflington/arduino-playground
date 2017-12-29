@@ -1,8 +1,13 @@
 
-#define PIN_LED_LEFT 5
+#define PIN_LED_LEFT  5
 #define PIN_LED_RIGHT 6
+#define PIN_WARNING   7
+
 #define PIN_TRIGGER 8
+#define PIN_FINISH  9
+
 #define RUN_HEARTBEAT
+/* #define DEBUG */
 
 void setup() 
 {
@@ -17,10 +22,13 @@ void setup()
 #endif
   pinMode(PIN_LED_LEFT, OUTPUT);
   pinMode(PIN_LED_RIGHT, OUTPUT);
+  pinMode(PIN_WARNING, OUTPUT);
   pinMode(PIN_TRIGGER, INPUT_PULLUP);
+  pinMode(PIN_FINISH, INPUT_PULLUP);
 
   digitalWrite(PIN_LED_LEFT, LOW);
   digitalWrite(PIN_LED_RIGHT, LOW);
+  digitalWrite(PIN_WARNING, LOW);
 #ifdef DEBUG
   Serial.println("Setup done");
 #endif
@@ -32,11 +40,21 @@ void setup()
 
 #define DELAY 500 /* ms */
 #define PIN_OFFSET 5
-void runLights(int t) {
+void runLights(int t, byte finisher) {
 
 #ifdef DEBUG
   Serial.println("Lights starting");
 #endif
+
+  digitalWrite(PIN_WARNING, HIGH);
+  delay(2000);
+  digitalWrite(PIN_WARNING, LOW);
+
+  digitalWrite(PIN_LED_LEFT, HIGH);
+  digitalWrite(PIN_LED_RIGHT, HIGH);
+  delay(1000);
+  digitalWrite(PIN_LED_LEFT, LOW);
+  digitalWrite(PIN_LED_RIGHT, LOW);
 
   bool cur = 0;
   do {
@@ -80,7 +98,7 @@ void loop()
 #ifdef DEBUG
     Serial.println("Running lights...");
 #endif
-    runLights(10 * 1000);
+    runLights(10 * 1000, PIN_FINISH);
   }
   delay(5);
 
