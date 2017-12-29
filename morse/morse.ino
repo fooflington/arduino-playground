@@ -11,7 +11,7 @@
 #define WORD_GAP   7
 
 #define DO_DOT pulse(DOT)
-#define DO_DASH pulse(DASH);
+#define DO_DASH pulse(DASH)
 
 /* char *message = "SOS Help us"; */
 
