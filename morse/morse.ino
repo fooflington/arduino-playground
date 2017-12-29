@@ -217,7 +217,19 @@ void setup() {
 }
 
 void loop() {
+#ifdef DEMO
   writeStr("SOS sos 2");
   delay(2000);
+#else
+  digitalWrite(PIN_READY, HIGH);
+  while (Serial.available() > 0) {
+    digitalWrite(PIN_READY, LOW);
+    char c = Serial.read();
+    Serial.print(c);
+    writeChar(c);
+  }
+  //Serial.println(" [done]");
+#endif
+
 }
 
